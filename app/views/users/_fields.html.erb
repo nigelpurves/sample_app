@@ -1,0 +1,17 @@
+<%= render 'shared/error_messages', :object => f.object %>		<!--renders a partial called shared/error_messages (shared because the partial is shared across multiple controllers)-->
+<div class="field">
+	<%= f.label :name %><br />  <!--when called with a method corresponding to an HTML form element this returns the code for that element specifically designed to...-->
+	<%= f.text_field :name %>   <!--...set an attribute of the @user object.  In other words this div creates the HTML needed to make a labeled text field element...-->
+</div>							<!--...appropriate for setting the name attribute of a User model-->
+<div class="field">
+	<%= f.label :email %><br />
+	<%= f.text_field :email %>
+</div>
+<div class="field">
+	<%= f.label :password %><br />
+	<%= f.password_field :password %>
+</div>
+<div class="field">
+	<%= f.label :password_confirmation, "Confirmation" %><br />
+	<%= f.password_field :password_confirmation %>
+</div>

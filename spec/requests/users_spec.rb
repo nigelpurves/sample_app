@@ -59,4 +59,24 @@ describe "Users" do
       end
     end
   end
+  
+  describe "deleting users" do
+    
+    describe "for admin users" do
+      it "should be possible" do
+        integration_sign_in(Factory(:user, :email => "admin@example.com", :admin => true))
+        get 'users'
+        click_link "Delete"
+        response.should be_success
+      end
+    end
+    
+    describe "for non-admin users" do
+      it "should not be possible" do
+        integration_sign_in(Factory(:user))
+        get 'users'
+        response.should_not have_selector("a", :content => "delete")
+      end
+    end
+  end
 end

@@ -6,23 +6,7 @@
 									class User; moreover, since @user is a NEW user Rails knows to construct a form with the post method, which is the proper verb for
 									creating a new object. The class and id above are irrelevant, what's important is action="/users" and method="post". Together these
 									constitute instructions to issue an HTML post request to the /users URL-->
-	<%= render 'shared/error_messages', :object => f.object %>  <!--renders a partial called shared/error_messages (shared because the partial is shared across multiple controllers)-->
-	<div class="field">
-		<%= f.label :name %><br />  <!--when called with a method corresponding to an HTML form element this returns the code for that element specifically designed to...-->
-		<%= f.text_field :name %>   <!--...set an attribute of the @user object.  In other words this div creates the HTML needed to make a labeled text field element...-->
-	</div>							<!--...appropriate for setting the name attribute of a User model-->
-	<div class="field">
-		<%= f.label :email %><br />
-		<%= f.text_field :email %>
-	</div>
-	<div class="field">
-		<%= f.label :password %><br />
-		<%= f.password_field :password %>
-	</div>
-	<div class="field">
-		<%= f.label :password_confirmation, "Confirmation" %><br />
-		<%= f.password_field :password_confirmation %>
-	</div>
+	<%= render 'fields', :f => f %>
 	<div class="actions">
 		<%= f.submit "Sign up" %>
 	</div>

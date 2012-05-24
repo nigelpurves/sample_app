@@ -15,8 +15,13 @@ class UsersController < ApplicationController
   end
   
   def new
-    @user = User.new
-    @title = "Sign up"
+    unless signed_in?
+      @user = User.new
+      @title = "Sign up"
+    else
+      flash[:info] = "You cannot create a new account because you're already logged in!"
+      redirect_to root_path
+    end
   end
   
   def create
@@ -51,8 +56,13 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User destroyed."
+    @user = User.find(params[:id])
+    if current_user == @user
+      flash[:notice] = "You cannot destroy yourself"
+    else
+      @user.destroy
+        flash[:success] = "User destroyed."
+    end
     redirect_to users_path
   end
   
