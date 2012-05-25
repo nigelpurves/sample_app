@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation    # This tells Rails which attributes of the model are accessible ie which can be modified by outside users (eg users submitting requests with web browsers) or by mass assignment
   
-  has_many :microposts
+  has_many :microposts, :dependent => :destroy
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
